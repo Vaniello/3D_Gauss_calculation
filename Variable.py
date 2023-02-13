@@ -1,4 +1,5 @@
-from math import ceil, floor
+from math import ceil
+from numpy import arange
 
 class Variable:
     def __init__(self, name, min, max, step, SD, mean):
@@ -11,9 +12,9 @@ class Variable:
         self.step = float(step)
         self.SD = float(SD)
         self.mean = float(mean)
-        self.range = self.set_range(self.min, self.max, self.step)
+        self.range = self.set_range()
 
-    def set_range(self, min, max, step):
+    def set_range(self):
         """
         set range for this value with given step, include min and max value
         first range value = min parameter value;
@@ -21,26 +22,12 @@ class Variable:
         if parameter step is integer - start iterating from integer ceil to minimum to integer floor to maximum
         else - iterating from min to max
         """
-        var_range = []
-        if step == 1:
-            step_int = True
-        else:
-            step_int = False
-        if step_int:
-            i = ceil(min)
-            fin = floor(max)
-            var_range.append(min)
-        else:
-            i = min
-            fin = max
 
-        while i <= fin:
-            var_range.append(i)
-            i += step
-
-        if step_int:
-            var_range.append(max)
-        elif var_range[-1] != fin:
-            var_range.append(max)
+        if int(self.step) == self.step:  # Check is step equals integer
+            var_range = [self.min] + list(arange(ceil(self.min), ceil(self.max), self.step)) + [self.max]
+        else:
+            var_range = list(arange(self.min, self.max, self.step))
+            if var_range[-1] != self.max:
+                var_range.append(self.max)
 
         return var_range

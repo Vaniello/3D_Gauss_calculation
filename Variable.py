@@ -2,6 +2,9 @@ from math import ceil, floor
 
 class Variable:
     def __init__(self, name, min, max, step, SD, mean):
+        """
+        Main object for one variable (X, Y, Z)
+        """
         self.name = name
         self.min = float(min)
         self.max = float(max)
@@ -11,6 +14,13 @@ class Variable:
         self.range = self.set_range(self.min, self.max, self.step)
 
     def set_range(self, min, max, step):
+        """
+        set range for this value with given step, include min and max value
+        first range value = min parameter value;
+        last range value = max parameter value;
+        if parameter step is integer - start iterating from integer ceil to minimum to integer floor to maximum
+        else - iterating from min to max
+        """
         var_range = []
         if step == 1:
             step_int = True

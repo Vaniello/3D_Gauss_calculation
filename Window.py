@@ -99,10 +99,14 @@ class Window:
         self.ok_btn = Button(text='Выполнить', command=self.ok_button_callback)
         self.ok_btn.grid(row=11, column=3, padx=30, pady=30)
 
-    def start(self):
+    def start(self) -> None:
+        """
+        Run TK window
+        :return:
+        """
         mainloop()
 
-    def collect_data(self):
+    def collect_data(self) -> dict:
         """
         Collection of all variables characteristics from Window fields into a dictionary
         :return: data dictionary

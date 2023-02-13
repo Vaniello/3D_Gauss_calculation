@@ -10,23 +10,27 @@ def calculate_3G_parameters(data: dict) -> None:
     :param data:
     :return: None
     """
+    # Create Variable objects for our X, Y, Z variables
     x = Variable(data['X']['Name'], data['X']['Min'], data['X']['Max'],
                  data['X']['Step'], data['X']['SD'], data['X']['Mean'])
     y = Variable(data['Y']['Name'], data['Y']['Min'], data['Y']['Max'],
                  data['Y']['Step'], data['Y']['SD'], data['Y']['Mean'])
     z = Variable(data['Z']['Name'], data['Z']['Min'], data['Z']['Max'],
                  data['Z']['Step'], data['Z']['SD'], data['Z']['Mean'])
+    # Create new workbook and fill the header
     xl = XL_Book()
     xl.fill_header(data['X']['Name'], data['Y']['Name'], data['Z']['Name'])
     main_data = [data['X']['Mean'], data['Y']['Mean'], data['Z']['Mean'],
                  data['X']['SD'], data['Y']['SD'], data['Z']['SD'],
                  data['Correlation']['XY'], data['Correlation']['XZ'], data['Correlation']['YZ']]
+    # Calculate k-coef and probability for all possible combinations of X, Y, Z values from ranges
     for current_x in x.range:
         for current_y in y.range:
             for current_z in z.range:
                 k_coef = k_coef_calculation(current_x, current_y, current_z, x, y, z, data['Correlation']['XY'],
                                             data['Correlation']['XZ'], data['Correlation']['YZ'])
                 prob = probability(k_coef)
+                # Write data into workbook
                 xl.fill_main_data(main_data)
                 xl.fill_calculated_data(current_x, current_y, current_z, k_coef, prob)
 

@@ -3,7 +3,7 @@ from datetime import datetime
 import xlsxwriter
 
 
-class XL_book:
+class XL_Book:
     def __init__(self):
         """
         Initialization an Excel workbook to writing calculation results
@@ -58,7 +58,7 @@ class XL_book:
         """
         self.worksheet.write_row(self.current_data_row, 0, main_data)
 
-    def fill_calculated_data(self, x, y, z, k, probability) -> None:
+    def fill_calculated_data(self, x: float, y: float, z: float, k: float, probability: float) -> None:
         """
         Write calculated data
         :param x: Value X for which the k-index and probability are calculated

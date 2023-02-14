@@ -22,6 +22,7 @@ class Variable:
         last range value = max parameter value;
         if parameter step is integer - start iterating from integer ceil to minimum to integer floor to maximum
         else - iterating from min to max
+        :return: variable range list
         """
 
         if int(self._step) == self._step:  # Check is step equals integer

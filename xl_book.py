@@ -53,7 +53,7 @@ class XL_Book:
         Write main data (mean, SD, correlations) of each variables
         The order in which the data should be:
         [x_mean, y_mean, z_mean, x_SD, y_SD, z_SD, r_xy, r_xz, r_yz]
-        :param main_data:
+        :param main_data: mean, SD of X, Y, Z variables and correlation between them
         :return: None
         """
         self.worksheet.write_row(self.current_data_row, 0, main_data)

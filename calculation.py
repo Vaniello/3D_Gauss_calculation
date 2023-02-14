@@ -7,7 +7,7 @@ from xl_book import XL_Book
 def calculate_3G_parameters(data: dict) -> None:
     """
     Makes basic calculations. Creates a workbook for the result. Writes the result to the workbook
-    :param data:
+    :param data: all data from window fields in dictionary
     :return: None
     """
     # Create Variable objects for our X, Y, Z variables

@@ -102,7 +102,7 @@ class Window:
     def start(self) -> None:
         """
         Run TK window
-        :return:
+        :return: None
         """
         mainloop()
 
